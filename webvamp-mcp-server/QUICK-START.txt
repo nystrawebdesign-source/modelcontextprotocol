@@ -1,0 +1,182 @@
+═══════════════════════════════════════════════════════════════════
+  WEBVAMP MCP DESIGN SYSTEM - QUICK START GUIDE
+═══════════════════════════════════════════════════════════════════
+
+📦 STEP 1: EXTRACT THE ARCHIVE
+────────────────────────────────────────────────────────────────────
+After downloading webvamp-mcp-server.tar.gz:
+
+Linux/Mac:
+  tar -xzf webvamp-mcp-server.tar.gz
+  cd webvamp-mcp-server
+
+Windows (use 7-Zip or similar):
+  - Extract webvamp-mcp-server.tar.gz
+  - Then extract the resulting .tar file
+  - cd webvamp-mcp-server
+
+═══════════════════════════════════════════════════════════════════
+🚀 STEP 2: INSTALL DEPENDENCIES
+────────────────────────────────────────────────────────────────────
+npm install
+
+This will download all required packages (~269 packages)
+
+═══════════════════════════════════════════════════════════════════
+🔨 STEP 3: BUILD THE PROJECT
+────────────────────────────────────────────────────────────────────
+npm run build
+
+This compiles TypeScript to JavaScript in the build/ folder
+
+═══════════════════════════════════════════════════════════════════
+🧠 STEP 4: INGEST A TEMPLATE (Extract Designer Brain)
+────────────────────────────────────────────────────────────────────
+Point it at any web template directory:
+
+  npm run ingest /path/to/your/template
+
+Example:
+  npm run ingest ./my-bootstrap-template
+  npm run ingest ~/Downloads/premium-template
+
+This creates: designer-brain.json
+
+═══════════════════════════════════════════════════════════════════
+⚡ STEP 5: START THE MCP SERVER
+────────────────────────────────────────────────────────────────────
+npm start
+
+You'll see:
+  🚀 WebVamp MCP Design System Server
+  💡 This template is now an AI-consultable designer brain
+  📦 X components loaded
+  🎨 X color tokens
+
+═══════════════════════════════════════════════════════════════════
+🔧 STEP 6: CONFIGURE CLAUDE DESKTOP
+────────────────────────────────────────────────────────────────────
+Edit: ~/Library/Application Support/Claude/claude_desktop_config.json
+
+Add this:
+
+{
+  "mcpServers": {
+    "webvamp-design-system": {
+      "command": "node",
+      "args": ["/ABSOLUTE/PATH/TO/webvamp-mcp-server/build/index.js"],
+      "env": {
+        "DESIGNER_BRAIN_PATH": "/ABSOLUTE/PATH/TO/designer-brain.json"
+      }
+    }
+  }
+}
+
+IMPORTANT: Replace /ABSOLUTE/PATH/TO/ with your actual path!
+
+Example on Mac:
+  /Users/yourname/Projects/webvamp-mcp-server/build/index.js
+
+Example on Windows:
+  C:\\Users\\yourname\\Projects\\webvamp-mcp-server\\build\\index.js
+
+═══════════════════════════════════════════════════════════════════
+✅ STEP 7: RESTART CLAUDE DESKTOP
+────────────────────────────────────────────────────────────────────
+FULLY QUIT Claude Desktop (Cmd+Q on Mac, Right-click tray icon > Quit on Windows)
+
+Then restart it.
+
+═══════════════════════════════════════════════════════════════════
+🎨 STEP 8: TEST IT!
+────────────────────────────────────────────────────────────────────
+In Claude Desktop, look for the Tools icon (hammer/wrench)
+
+Try these commands:
+
+  "Show me all components in the design system"
+
+  "Create a user profile card with avatar, name, and bio"
+
+  "Generate a pricing card component in this template's style"
+
+═══════════════════════════════════════════════════════════════════
+📁 FILE STRUCTURE
+────────────────────────────────────────────────────────────────────
+webvamp-mcp-server/
+├── package.json              # Dependencies & scripts
+├── tsconfig.json             # TypeScript config
+├── README.md                 # Full documentation
+├── src/
+│   ├── index.ts              # Main MCP server
+│   ├── cli/
+│   │   └── ingest.ts         # Template ingestion tool
+│   ├── engine/
+│   │   ├── ComponentExtractor.ts   # Component DNA extraction
+│   │   └── TokenExtractor.ts       # Design token extraction
+│   └── types/
+│       └── index.ts          # TypeScript type definitions
+└── build/                    # Generated after npm run build
+
+═══════════════════════════════════════════════════════════════════
+🎯 EXAMPLE USAGE
+────────────────────────────────────────────────────────────────────
+
+1. Download a web template (any HTML/CSS template)
+
+2. Ingest it:
+   npm run ingest ~/Downloads/my-template
+
+3. Start server:
+   npm start
+
+4. In Claude Desktop:
+   "Create a hero section with heading, subheading, and CTA button"
+
+   AI will generate it in your template's EXACT style!
+
+═══════════════════════════════════════════════════════════════════
+❓ TROUBLESHOOTING
+────────────────────────────────────────────────────────────────────
+
+Server won't start?
+  → Make sure you ran: npm run build
+  → Check that designer-brain.json exists
+
+Claude Desktop not seeing tools?
+  → Use ABSOLUTE paths in config
+  → Fully quit and restart Claude Desktop
+  → Check logs: ~/Library/Logs/Claude/mcp.log
+
+No components extracted?
+  → Make sure template has .html and .css files
+  → Check that path is correct
+
+═══════════════════════════════════════════════════════════════════
+🌟 WHAT MAKES THIS REVOLUTIONARY
+────────────────────────────────────────────────────────────────────
+
+Traditional templates = static files that die on download
+
+WebVamp templates = AI-consultable designer brains
+
+It's like hiring the original template designer to build YOUR
+specific features, perfectly matching the original style.
+
+═══════════════════════════════════════════════════════════════════
+📚 MORE INFO
+────────────────────────────────────────────────────────────────════
+
+Read the full README.md for:
+  - Architecture details
+  - Advanced usage
+  - API reference
+  - Roadmap
+
+═══════════════════════════════════════════════════════════════════
+
+🚀 Welcome to the next generation of web development!
+
+Templates are no longer files. They're AI-consultable designer intelligence.
+
+═══════════════════════════════════════════════════════════════════
